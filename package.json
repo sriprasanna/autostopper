@@ -28,7 +28,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "gluegun": "latest"
+    "@aws-sdk/client-ec2": "^3.637.0",
+    "@types/node-notifier": "^8.0.5",
+    "gluegun": "latest",
+    "node-notifier": "^10.0.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
