@@ -1,8 +1,8 @@
 {
   "name": "autostopper",
-  "version": "0.0.1",
-  "description": "autostopper CLI",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Autostopper is a simple CLI tool for start and autostop your AWS EC2 instances.",
+  "private": false,
   "types": "build/types/types.d.ts",
   "bin": {
     "autostopper": "bin/autostopper"
