@@ -24,11 +24,10 @@ npm install -g autostopper
 To start an instance and automatically stop it after a certain period:
 
 ```bash
-autostopper start i-1234567890abcdef0 --duration 60
+autostopper start i-1234567890abcdef0
 ```
 
-- `i-1234567890abcdef0`: The ID of the EC2 instance you want to start.
-- `--duration 60`: The duration in minutes after which the instance should be stopped.
+- `i-1234567890abcdef0`: The ID of the EC2 instance you want to start. (multiple IDs can be passed as comma separated)
 
 ### Add or Remove Time
 
