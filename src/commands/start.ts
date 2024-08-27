@@ -133,6 +133,7 @@ const command: GluegunCommand = {
           } else if (action.choice === 'Continue') {
             // do nothing
           } else if (action.choice === 'Stop') {
+            notified = true; // don't notify and proceed to stop
             remainingMilliseconds = 0
           }
           start()
