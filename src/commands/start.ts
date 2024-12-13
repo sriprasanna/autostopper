@@ -1,5 +1,6 @@
 import { GluegunCommand } from 'gluegun';
 import { EC2Client, StartInstancesCommand, StopInstancesCommand } from "@aws-sdk/client-ec2";
+import { loadSharedConfigFiles } from '@smithy/shared-ini-file-loader';
 import { notify } from 'node-notifier'
 
 
@@ -44,7 +45,15 @@ const command: GluegunCommand = {
     const minutes = parseInt(inputs.duration);
     const client = new EC2Client();
     const startCommand = new StartInstancesCommand({ "InstanceIds": instanceIds });
+    
+    //profile & Region validations
+    const profileName = "default"; // change this to whatever profile name you want
 
+    const sharedConfig = await loadSharedConfigFiles();
+    print.info(`Searching for instances in region: ${sharedConfig.configFile?.[profileName]?.region}`);
+    print.info(`Searching for instances in profile: ${profileName}`);
+    //End validations
+    
     try {
       await client.send(startCommand);
       print.info(`Starting instances: ${instanceIds}`);
@@ -141,7 +150,8 @@ const command: GluegunCommand = {
       });
 
     } catch (e) {
-      print.error(e);
+      print.info(`Instance ${instanceIds} not found in region ${sharedConfig.configFile?.[profileName]?.region}. Please check the profile name and region. `);
+      //print.error(e);
       process.exit(1);
     }
   },
